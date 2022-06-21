@@ -26,17 +26,18 @@
           @foreach ($cars as $car)
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item">{{$car->id}}</li>
-            <img style="height: 50px; width:50px;" src="/images/{{$car->image}}" class="rounded float-start" alt="...">
+            <img style="height: 50px; width:50px;" src="/assets/images/{{$car->image}}" class="rounded float-start" alt="...">
             <li class="list-group-item">{{$car->make}}</li>
             <li class="list-group-item">{{$car->model}}</li>
             <li class="list-group-item">{{$car->produced_on}}</li>
             <li class="list-group-item">
                 <div class="btn-group">
                     <a href="{{route('cars.edit',$car->id)}}" class="btn btn-primary active" aria-current="page" >Sửa</a>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    {{-- <a href="{{route('cars.delete', $car->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a> --}}
+                    <a href="{{route('cars.delete', $car->id)}}" class="delete btn btn-danger" data-confirm="Are you sure to delete this item?">Delete</a>
+                    {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Xóa
                     </button>
-                    <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <div class="modal-content">
@@ -53,12 +54,13 @@
                             </div>
                         </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </li>
           </ul>
           @endforeach
           <strong><a href="{{route('cars.create')}}">Thêm mới xe</a></strong>
     </div>
+    <script src="/assets/js/getDB.js"></script>
 </body>
 </html>

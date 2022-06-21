@@ -27,7 +27,7 @@ Route::get('cars/{id}/edit',[CarController::class,'edit'])->name('cars.edit');
 Route::put('cars/{car}',[CarController::class,'update'])->name('cars.update');
 Route::get('cars/{car}',[CarController::class,'show'])->name('cars.show');
 // Route::delete('cars/{car}',[CarController::class,'destroy'])->name('cars.destroy');
-Route::get('/cars/delete/{car}', [CarController::class, 'destroy']);
+Route::get('/cars/delete/{car}', [CarController::class, 'destroy'])->name('cars.delete');
 // Route::get('ptb1',function(){
 //     return view('ptb1');
 // });

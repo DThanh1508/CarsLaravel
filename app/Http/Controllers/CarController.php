@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use Illuminate\Support\Facades\Hash;
+// import Storage class
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class CarController extends Controller
 {
@@ -53,7 +56,7 @@ class CarController extends Controller
             ]);
             $file = $req -> file('image');
             $name = time().'_'.$file->getClientOriginalName();
-            $destinationPath=public_path('images');
+            $destinationPath=public_path('/assets/images');
             $file->move($destinationPath,$name);
         }
         $this -> validate($req,[
@@ -125,7 +128,7 @@ class CarController extends Controller
             ]);
             $file = $req -> file('image');
             $name = time().'_'.$file->getClientOriginalName();
-            $destinationPath=public_path('images');
+            $destinationPath=public_path('/assets/images');
             $file->move($destinationPath,$name);
         }
         $this -> validate($req,[
@@ -156,9 +159,21 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        // Tìm đến đối tượng muốn xóa
-        $car = Car::findOrFail($id);
+        $car             = Car::findOrFail($id);
+        $image_path         = public_path('assets\images\\').$car->image;
+
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
         $car->delete();
         return redirect()->route('cars.index')->with('success','Bạn đã xóa thành công');
+            //abort(404);
+
+        // =======================================
+        // Tìm đến đối tượng muốn xóa
+        // $car = Car::findOrFail($id);
+        // $car->delete();
+        // return redirect()->route('cars.index')->with('success','Bạn đã xóa thành công');
+        
     }
 }

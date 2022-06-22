@@ -5,48 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show database day 2</title>
-    <link rel="stylesheet" href="/assets/css/showdatabase.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        color:white;
-        }
-        .container {
-            background-color:orange;
-        }
-        .row{
-            margin-top:50px;
-        }
-        .col-md-4{
-            margin-bottom:70px;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/show.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
 </head>
 <body>
     <div class="container">
-        <form class="row g-3">
-            <!-- <h1>Car {{ $car['model'] }}</h1> -->
-            <h1>Car {{ $car->model }}</h1>
-            <div class="d-flex form">
-                <div style="padding-left: 15%;" class="col-md-4">
-                    <img style="height: 200px; width:200px;" src="/images/{{$car->image}}" class="rounded float-start" alt="...">
+        <div class="wrapper">
+            <h1>Cool {{ $car->model }} car</h1>
+            <div class="item item--clip">
+                <div class="demo">
+                    <img src="/assets/images/{{$car->image}}" class="has-mask" alt="...">
                 </div>
-                <div class="col-md-4">
-                    <label for="inputEmail4" class="form-label">Make </label>
-                    <input type="email" class="form-control" id="getMake" value="{{$car->make}}">
-
-                    <label for="inputPassword4" class="form-label">Model</label>
-                    <input type="text" class="form-control" id="getModel" value="{{$car->model}}">
-
-                    <label for="inputAddress" class="form-label">Produced_on </label>
-                    <input type="text" class="form-control" id="getProduced_on" value="{{$car->produced_on}}">
+                <div class="text">
+                    <h3>Made in {{ $car->make }}</h3>
+                    <br /><br />
+                    <code class="code--css"><pre>Produc on: {{$car->produced_on}}</pre></code>
                 </div>
-            </div>
-        </form>
+                <button class="unit" type="button"><i class="fa-solid fa-pen-to-square" onclick="window.location = '{{ route('cars.edit',$car->id) }}'"></i></button>
+                <button class="unit" type="button"><i class="fa-solid fa-circle-trash" onclick="window.location = '{{ route('cars.delete',$car->id) }}'"></i></button>
+            </div> 
+        </div>
     </div>
 </body>
 </html>

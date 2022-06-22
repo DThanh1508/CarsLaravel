@@ -160,12 +160,12 @@ class CarController extends Controller
     public function destroy($id)
     {
         $car             = Car::findOrFail($id);
-        $image_path         = public_path('assets\images\\').$car->image;
+        $image_path         = public_path('/assets/images/').$car->image;
 
         if(File::exists($image_path)) {
             File::delete($image_path);
+            $car->delete();
         }
-        $car->delete();
         return redirect()->route('cars.index')->with('success','Bạn đã xóa thành công');
             //abort(404);
 

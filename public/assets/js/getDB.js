@@ -1,3 +1,8 @@
+// function Confirm(id) {
+//     confirm("Chắc không?");
+//     return window.location.route('cars.edit',$car->id);
+//     console.log("Bạn đã bấm vào xóa");
+// }
 var deleteLinks = document.querySelectorAll('.delete');
 
 for (var i = 0; i < deleteLinks.length; i++) {

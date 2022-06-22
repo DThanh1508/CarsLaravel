@@ -26,7 +26,7 @@
           @foreach ($cars as $car)
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item">{{$car->id}}</li>
-            <img style="height: 50px; width:50px;" src="/assets/images/{{$car->image}}" class="rounded float-start" alt="...">
+            <a href="{{route('cars.show',$car->id)}}"><img style="height: 50px; width:50px;" src="/assets/images/{{$car->image}}" class="rounded float-start" alt="..."></a>
             <li class="list-group-item">{{$car->make}}</li>
             <li class="list-group-item">{{$car->model}}</li>
             <li class="list-group-item">{{$car->produced_on}}</li>

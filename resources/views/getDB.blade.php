@@ -11,54 +11,37 @@
 <body>
     <div class="container">
         <h1>Danh sách xe</h1>
-        <ul class="list-group list-group-horizontal">
-            <li class="list-group-item btn-warning">ID</li>
-            <li class="list-group-item btn-warning">Image</li>
-            <li class="list-group-item btn btn-warning">Make</li>
-            <li class="list-group-item btn btn-warning">Model</li>
-            <li class="list-group-item btn btn-warning">Produced_on</li>
-            <li class="list-group-item btn btn-warning">
-                <div class="btn-group">
-                    <a href="#" class="btn active" aria-current="page">Proceed</a>
-                </div>
-            </li>
-          </ul>
-          @foreach ($cars as $car)
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item">{{$car->id}}</li>
-            <a href="{{route('cars.show',$car->id)}}"><img style="height: 50px; width:50px;" src="/assets/images/{{$car->image}}" class="rounded float-start" alt="..."></a>
-            <li class="list-group-item">{{$car->make}}</li>
-            <li class="list-group-item">{{$car->model}}</li>
-            <li class="list-group-item">{{$car->produced_on}}</li>
-            <li class="list-group-item">
-                <div class="btn-group">
-                    <a href="{{route('cars.edit',$car->id)}}" class="btn btn-primary active" aria-current="page" >Sửa</a>
-                    {{-- <a href="{{route('cars.delete', $car->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a> --}}
-                    <a href="{{route('cars.delete', $car->id)}}" class="delete btn btn-danger" data-confirm="Are you sure to delete this item?">Delete</a>
-                    {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Xóa
-                    </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Do you want to delete?
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                            <button type="button" class="btn btn-primary" onclick="window.location = '/cars/delete/{{ $car->id }}'">Yes, of course!</button>
-                            </div>
-                        </div>
-                        </div>
-                    </div> --}}
-                </div>
-            </li>
-          </ul>
-          @endforeach
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Image</th>
+                <th scope="col">Model</th>
+                <th scope="col">Make</th>
+                <th scope="col">Produced on</th>
+                <th scope="col">Manufacturer</th>
+                <th scope="col">EDIT</th>
+                <th scope="col">DELETE</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($cars as $car)
+                    <tr>
+                        <th scope="row">{{$car->id}}</th>
+                        <td><a href="{{route('cars.show',$car->id)}}"><img style="height: 50px; width:50px;" src="/assets/images/{{$car->image}}" class="rounded float-start" alt="..."></a></td>
+                        <td>{{ $car->model}}</td>
+                        <td>{{ $car->make }}</td>
+                        <td>{{ $car->produced_on }}</td>
+                        <td>{{ $car->mf->name }}</td>
+                        <td><a href="{{ route('cars.edit',$car->id) }}" class="btn btn-primary active">EDIT</a></td>
+                        <td>
+                            {{-- <a href="{{route('cars.delete', $car->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a> --}}
+                            <a href="{{route('cars.delete', $car->id)}}" class="delete btn btn-danger" data-confirm="Are you sure to delete this item?">Delete</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
           <strong><a href="{{route('cars.create')}}">Thêm mới xe</a></strong>
     </div>
     <script src="/assets/js/getDB.js"></script>

@@ -27,9 +27,17 @@
             <strong><a href="{{route('cars.index')}}">Quay lại trang chủ</a></strong>
             <div class="col-md-6">
               <label for="" class="form-label" >Image</label>
-              <img src="/assets/images/{{isset($car)?$car->image:''}}" alt="">
-              <input type="file" class="form-control" id="inputImage" name="image">
+              <img src="/assets/images/{{isset($car)?$car->image:''}}" alt="" id="newimage">
+              <input type="file" class="form-control" id="image" name="image" onchange="changeImage(event)">
             </div>
+            {{-- <div class="col-md-6">
+              <label for="" class="form-label" >Id</label>
+              <input type="text" class="form-control" id="inputMake" name="mf_id" value="{{isset($car)?$car->id:''}}">
+            </div> --}}
+            <select class="form-select select-mt3" name="mf_id" value="{{isset($car)?$car->mf_id:''}}">
+              <option value="1">Thanh</option>
+              <option value="2">Den</option>
+            </select>
             <div class="col-md-6">
               <label for="" class="form-label" >Make</label>
               <input type="text" class="form-control" id="inputMake" name="make" value="{{isset($car)?$car->make:''}}">
@@ -47,5 +55,6 @@
             </div>
           </form>
     </div>
+    <script src="/assets/js/getImage.js"></script>>
 </body>
 </html>

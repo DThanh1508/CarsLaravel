@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nsx', function (Blueprint $table) {
+        Schema::create('mfs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('namensx');
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nsx');
+        Schema::dropIfExists('mfs');
     }
 };

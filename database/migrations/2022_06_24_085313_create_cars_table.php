@@ -13,14 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create table
         Schema::create('cars', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('mf_id');
+            $table->foreign('mf_id')->references('id')->
+            on('mfs') ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->string('make');
             $table->string('model');
             $table->date('produced_on');
             $table->timestamps();
             $table->text('image');
         });
+        // Update table
+        // Schema::table('cars', function (Blueprint $table) {
+        //      $table->increments('id');
+        // });
     }
 
     /**

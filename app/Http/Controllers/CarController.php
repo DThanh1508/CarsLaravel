@@ -60,10 +60,12 @@ class CarController extends Controller
             $file->move($destinationPath,$name);
         }
         $this -> validate($req,[
+            'mf_id'=>'required',
             'make'=>'required',
             'model'=>'required',
             'produced_on'=>'required|date'
         ],[
+            'mf.id.required'=> 'Bạn chưa nhập id nhà sản xuất',
             'make.required'=>'Bạn chưa nhập mô tả',
             'model.required'=>'Bạn chưa nhập model',
             'produced_on.required'=> 'Bạn chưa nhập ngày sản xuất',
@@ -71,6 +73,7 @@ class CarController extends Controller
         ]);
 
         $car=new Car();
+        $car -> mf_id = $req->mf_id;
         $car -> make = $req->make;
         $car -> model =$req->model;
         $car->produced_on=$req->produced_on;
@@ -132,10 +135,12 @@ class CarController extends Controller
             $file->move($destinationPath,$name);
         }
         $this -> validate($req,[
+            'mf_id'=>'required',
             'make'=>'required',
             'model'=>'required',
             'produced_on'=>'required|date'
         ],[
+            'mf_id.required'=>'Bạn chưa nhập id nhà sản xuất',
             'make.required'=>'Bạn chưa nhập mô tả',
             'model.required'=>'Bạn chưa nhập model',
             'produced_on.required'=> 'Bạn chưa nhập ngày sản xuất',
@@ -143,6 +148,7 @@ class CarController extends Controller
         ]);
 
         $car=Car::find($id);
+        $car -> mf_id = $req->mf_id;
         $car -> make = $req->make;
         $car -> model =$req->model;
         $car->produced_on=$req->produced_on;

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>First degree equation</title>
-    <link rel="stylesheet" href="/assets/css/ptb1.sass">
+    <link rel="stylesheet" href="/assets/css/ptb1.css">
 </head>
 <body>
     {{-- <form action="{{route('ptb1.post')}}" method="POST"> --}}
@@ -16,7 +16,6 @@
         </div>
         @csrf
         
-        <label for=""> a =</label>
         <label>
           <input type="text" placeholder="a" name="a" value="{{isset($a)?$a:''}}"/>
         </label>
@@ -32,7 +31,6 @@
         </div>
       @endif --}}
         <br>
-        <label for="">b =</label>
         <label>
           <input type="text" placeholder="b" name="b" value="{{isset($b)?$b:''}}"/>
         </label>
